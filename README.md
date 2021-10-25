@@ -10,7 +10,7 @@
 * Скачать `cromwell-XX.jar` [отсюда](https://github.com/broadinstitute/cromwell/releases/latest). (Здесь XX — номер версии)
 * Выполнить `java -jar cromwell-XX.jar run hello.wdl`.
 
-В результате должно быть выведено (помимо прочего) следующее:
+В результате должно быть выведено (помимо прочего) следующее (см. файл `hello.txt`):
 ```
 {
     "hello.helloTask.out": "Hello World"
