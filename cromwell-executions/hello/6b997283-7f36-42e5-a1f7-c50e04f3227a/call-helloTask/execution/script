@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution
+tmpDir=$(mkdir -p "/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/tmp.760322c5" && echo "/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/tmp.760322c5")
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution
+
+)
+out6b997283="${tmpDir}/out.$$" err6b997283="${tmpDir}/err.$$"
+mkfifo "$out6b997283" "$err6b997283"
+trap 'rm "$out6b997283" "$err6b997283"' EXIT
+touch '/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/stdout' '/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/stderr'
+tee '/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/stdout' < "$out6b997283" &
+tee '/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/stderr' < "$err6b997283" >&2 &
+(
+cd /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution
+
+
+echo "Hello World"
+)  > "$out6b997283" 2> "$err6b997283"
+echo $? > /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution
+sync
+
+
+)
+mv /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/rc.tmp /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/rc

@@ -1,0 +1,3 @@
+#!/bin/bash
+'/bin/bash' '/home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /home/simon/bio/cromwell-executions/hello/6b997283-7f36-42e5-a1f7-c50e04f3227a/call-helloTask/execution/rc &
+echo $!
