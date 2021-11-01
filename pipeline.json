@@ -1,0 +1,4 @@
+{
+"hello.fastqFile": "sra_data.fastq.gz",
+"hello.referenceFile": "ref.fna"
+}
